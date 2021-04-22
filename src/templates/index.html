@@ -1,0 +1,38 @@
+<!doctype html>
+
+<head>
+    <title>cccp stats</title>
+</head>
+
+<body>
+    <h1>cccp stats</h1>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    {% for daily in data %}
+                    <th>{{daily.name}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for daily in data %}
+                    <th>
+                        <table>
+                            <tbody>
+                                {% for coin, mentions in daily.coin_stats.items() %}
+                                <tr>
+                                    <th>{{ coin }}</th>
+                                    <th>{{ mentions }}</th>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </th>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
