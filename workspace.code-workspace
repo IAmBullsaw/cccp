@@ -1,8 +1,8 @@
 {
     "folders": [
         {
-            "name": "src",
-            "path": "./src"
+            "name": "root",
+            "path": "./"
         }
     ],
     "settings": {

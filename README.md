@@ -8,20 +8,31 @@ My idea is that this is a basic and very crude indication of popularity, coin sh
 * coin names like `one` are very likely to have skewed data, since it is a common word
 * no regards to upvote/downvote or if the coin is mentioned in a positive/negative manner are taken
 
-## Running the script
+## Installing
 
-First you must update the `praw.ini` with your reddit app/bots `client_secret` and `client_id`, as well as `user_agent`:
+To install, the easiest is to create a new virtual environment and install the dependencies listen in `requirements.txt`:
+
+```bash
+./cccp $ python3 -m venv .venv
+./cccp $ source .venv/bin/activate
+(.venv) ./cccp $ pip3 install -r requirements.txt
+```
+
+Then you must create and update a `praw.ini` file created in `cccp/src` with your reddit app/bots `client_secret` and `client_id`, as well as `user_agent`:
 
 ```
+# ... other file contents above here...
 client_id=
 client_secret=
 user_agent=
 ```
 
-Then you run it with `src` as the working directory:
+## Running the script
+You run cccp it with `src` as the working directory:
 
 ```bash
-$ ./cccp.py
+cccp/src $ chmod +x cccp.py
+cccp/src $ ./cccp.py
 Parsing comments for coins ...
 Expanding 7995 comments    ->
           513.0023 seconds <-
