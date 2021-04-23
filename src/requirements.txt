@@ -3,6 +3,7 @@ chardet==4.0.0
 idna==2.10
 praw==7.2.0
 prawcore==2.0.0
+pyChart.JS==0.3.0
 requests==2.25.1
 six==1.15.0
 update-checker==0.18.0

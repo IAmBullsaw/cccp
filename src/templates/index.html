@@ -2,37 +2,17 @@
 
 <head>
     <title>cccp stats</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 
 <body>
-    <h1>cccp stats</h1>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    {% for daily in data %}
-                    <th>{{daily.name}}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    {% for daily in data %}
-                    <th>
-                        <table>
-                            <tbody>
-                                {% for coin, mentions in daily.coin_stats.items() %}
-                                <tr>
-                                    <th>{{ coin }}</th>
-                                    <th>{{ mentions }}</th>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </th>
-                    {% endfor %}
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <h1>CCCP stats</h1>
+    <canvas id="cccp_chart"></canvas>
+    <script>
+        var data = {{ chartJSON | safe }}
+        var ctx = document.getElementById("cccp_chart").getContext('2d');
+        var cccp_chart = new Chart(ctx, data);
+    </script>
+    <footer>About: <a href="https://www.github.com/IAmBullsaw/cccp">IAmBullsaw/cccp.git</a></footer>
 </body>
