@@ -3,6 +3,8 @@
 Simple script and bot which finds the daily thread on `reddit.com/r/cryptocurrency` and counts the number of times a coin defined in `coins.txt` has been mentionen in a comment.
 My idea is that this is a basic and very crude indication of popularity, coin shilling and/or current rockets which could be used as a data point for desicions regarding investments.
 
+![Chart example](chart.png)
+
 ## Caveats
 
 * coin names like `one` are very likely to have skewed data, since it is a common word
@@ -18,6 +20,8 @@ To install, the easiest is to create a new virtual environment and install the d
 (.venv) ./cccp $ pip3 install -r requirements.txt
 ```
 
+or by running the `./install.sh` script in the root repo.
+
 Then you must create and update a `praw.ini` file created in `cccp/src` with your reddit app/bots `client_secret` and `client_id`, as well as `user_agent`:
 
 ```
@@ -28,6 +32,7 @@ user_agent=
 ```
 
 ## Running the cccp.py script
+
 You run cccp it with `src` as the working directory:
 
 ```bash
@@ -38,7 +43,16 @@ Expanding 7995 comments    ->
           513.0023 seconds <-
 ```
 
-And the results are saved in `./result.json`
+And the results are saved in `cccp/src/result.json`
+
+## Running the generate.py script
+
+This script reads from `result.js` to create the `CccpChart.py` which is the chart used by pychart.js  
+Typically you'd like to run this after updating result.js with the cccp.py
+
+## Running the flask server
+
+To look at the gathered data a little easier, run the flask server via `flask run` from `cccp/src/` and go to `localhost:5000`.
 
 ## Example praw.ini
 
@@ -80,7 +94,7 @@ user_agent=CCCPAgent 0.1
 
 ## run.sh example
 
-Example of a `run.sh` file, which could be used as an entrypoint to run cccp.py as a cron job. It's by ignored by git and should probably not be versioned.
+Example of a `run.sh` file, which could be used as an entrypoint to run cccp.py as a cron job. It's ignored by git and should probably not be versioned.
 
 ```bash
 source absolute/path/to/.venv/bin/activate &&
