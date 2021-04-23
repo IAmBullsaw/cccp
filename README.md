@@ -27,7 +27,7 @@ client_secret=
 user_agent=
 ```
 
-## Running the script
+## Running the cccp.py script
 You run cccp it with `src` as the working directory:
 
 ```bash
@@ -76,4 +76,14 @@ timeout=16
 client_id=
 client_secret=
 user_agent=CCCPAgent 0.1
+```
+
+## run.sh example
+
+Example of a `run.sh` file, which could be used as an entrypoint to run cccp.py as a cron job. It's by ignored by git and should probably not be versioned.
+
+```bash
+source absolute/path/to/.venv/bin/activate &&
+cd absolute/path/to/cccp/src &&
+./cccp.py
 ```
