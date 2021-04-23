@@ -11,5 +11,6 @@ db = Database()
 def index():
     coin_data = db.load()
     NewChart = CccpChart()
+    NewChart.options.indexAxis = 'y'
     ChartJSON = NewChart.get()
     return render_template('index.html', data=coin_data, chartJSON=ChartJSON)

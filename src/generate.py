@@ -1,3 +1,4 @@
+#! ../.venv/bin/python
 import json
 
 def generate(labels, colors, trans):
@@ -10,6 +11,7 @@ def generate(labels, colors, trans):
             f"class CccpChart(BaseChart):\n\n"
             f"    type = ChartType.Bar\n\n"
             f"    class labels:\n        grouped = {labels}\n\n"
+            f"    class options:\n        legend = {{'position': 'bottom'}}\n\n"
             f"    class data:\n\n"
         )
         f.write(c)
@@ -22,7 +24,7 @@ def generate(labels, colors, trans):
             f.write(c)
 
 
-def translate(data, filename='coins.txt'):
+def translate(data, filename='coins.txt', top_coins=20):
     """return result.json translated to get handled by pychartjs
 
     returns a tuple of (labels, translation)
@@ -33,10 +35,19 @@ def translate(data, filename='coins.txt'):
     translated = {coin:[] for coin in coins}
     labels = []
     for daily in data:
+        n_max = top_coins
         labels.append(daily['name'])
         for coin, n in daily['coin_stats'].items():
             translated[coin].append(n)
-    return labels, translated
+            n_max -= 1
+            if n_max == 0:
+                break
+    filtered = {}
+    for k, v in translated.items():
+        if v:
+            filtered[k]=v
+
+    return labels, filtered
 
 def get_colors(filename='colors.txt'):
     """return a dict() of color codes"""
