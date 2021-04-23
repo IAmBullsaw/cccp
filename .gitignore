@@ -130,3 +130,6 @@ dmypy.json
 
 # praw
 */praw.ini
+
+# run.sh is meant as a cron job
+*run.sh
